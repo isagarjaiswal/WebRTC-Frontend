@@ -8,9 +8,7 @@ export const UserProvider = ({ children }) => {
     localStorage.getItem("userName") || ""
   );
 
-  const [userId] = useState(
-    localStorage.getItem("userId") || uuidV4()
-  );
+  const [userId] = useState(localStorage.getItem("userId") || uuidV4());
   useEffect(() => {
     localStorage.setItem("userName", userName);
   }, [userName]);
