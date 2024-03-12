@@ -1,20 +1,28 @@
 import { createContext, useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
-export const UserContext = createContext(null);
+export const UserContext = createContext({
+  userId: "",
+  userName: "",
+  setUserName: (userName) => {},
+});
 
 export const UserProvider = ({ children }) => {
+  const [userId] = useState(localStorage.getItem("userId") || uuidV4());
   const [userName, setUserName] = useState(
     localStorage.getItem("userName") || ""
   );
 
-  const [userId] = useState(localStorage.getItem("userId") || uuidV4());
   useEffect(() => {
     localStorage.setItem("userName", userName);
   }, [userName]);
 
+  useEffect(() => {
+    localStorage.setItem("userId", userId);
+  }, [userId]);
+
   return (
-    <UserContext.Provider value={{ userName, setUserName, userId }}>
+    <UserContext.Provider value={{ userId, userName, setUserName }}>
       {children}
     </UserContext.Provider>
   );

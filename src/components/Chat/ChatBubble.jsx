@@ -1,21 +1,37 @@
 import { useContext } from "react";
 import { RoomContext } from "../../context/RoomContext";
+import { UserContext } from "../../context/UserContext";
 
 export const ChatBubble = ({ message }) => {
-  const { me, peers } = useContext(RoomContext);
-  const isSelf = message.author === me?.id;
-  const author = message.author && peers[message.author];
-  const authorUserName = author?.userName || "Anonymous";
+  const { peers } = useContext(RoomContext);
+  const { userId } = useContext(UserContext);
+  const author = message.author && peers[message.author].userName;
+  console.log({ author });
+  const userName = author || "Anonimus";
+  const isSelf = message.author === userId;
   const time = new Date(message.timestamp).toLocaleTimeString();
 
   return (
-    <div className="">
+    <div style={{ display: "flex", gap: "20px" }} className="">
       <div className="">
-        <div className="">
+        <div
+          style={{ textAlign: ` ${isSelf ? "left" : "right"}` }}
+          className=""
+        >
           {message.content}
-          <p className="">{time}</p>
+          <p
+            style={{ textAlign: ` ${isSelf ? "left" : "right"}` }}
+            className=""
+          >
+            {time}
+          </p>
         </div>
-        <div className="">{isSelf ? "You" : authorUserName}</div>
+        <div
+          style={{ textAlign: ` ${isSelf ? "left" : "right"}` }}
+          className=""
+        >
+          {isSelf ? "You" : userName}
+        </div>
       </div>
     </div>
   );

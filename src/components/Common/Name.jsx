@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
-import { RoomContext } from "../../context/RoomContext";
+import { UserContext } from "../../context/UserContext";
 
-const NameInput = () => {
-  const { userName, setUserName } = useContext(RoomContext);
-
+export const NameInput = () => {
+  const { userName, setUserName } = useContext(UserContext);
   return (
     <input
-      value={userName}
+      className="border rounded-md p-2 h-10 my-2 w-full"
+      placeholder="Enter your name"
       onChange={(e) => setUserName(e.target.value)}
-      className=""
-      style={{ border: "1px solid red" }}
+      value={userName}
     />
   );
 };
-
-export default NameInput;

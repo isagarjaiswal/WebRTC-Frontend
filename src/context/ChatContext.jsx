@@ -7,7 +7,14 @@ import {
 } from "../reducers/chatActions";
 import { ws } from "../ws";
 
-export const ChatContext = createContext(null);
+export const ChatContext = createContext({
+  chat: {
+    messages: [],
+    isChatOpen: false,
+  },
+  sendMessage: (message, roomId, author) => {},
+  toggleChat: () => {},
+});
 
 export const ChatProvider = ({ children }) => {
   const [chat, chatDispatch] = useReducer(chatReducer, {

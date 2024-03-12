@@ -9,7 +9,7 @@ export const Chat = () => {
     <div className="" style={{ display: "flex", justifyContent: "columns" }}>
       <div>
         {chat.messages.map((message) => (
-          <ChatBubble message={message} key={message.timestamp} />
+          <ChatBubble message={message} key={message.timestamp + (message?.author || "anonymous")} />
         ))}
       </div>
       <ChatInput />

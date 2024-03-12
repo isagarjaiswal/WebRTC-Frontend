@@ -9,32 +9,32 @@ import { UserContext } from "../../context/UserContext";
 import { ChatContext } from "../../context/ChatContext";
 import { ws } from "../../ws";
 import "./Room.css";
+import { NameInput } from "../../components/Common/Name";
 
 export const Room = () => {
-  console.log({ ws });
-
   const { id } = useParams();
-  const { stream, peers, shareScreen, screenSharingId, setRoomId } =
-    useContext(RoomContext);
-  const { userName, setUserName, userId } = useContext(UserContext);
+  const {
+    stream,
+    screenStream,
+    peers,
+    shareScreen,
+    screenSharingId,
+    setRoomId,
+  } = useContext(RoomContext);
+  const { userName, userId } = useContext(UserContext);
   const { toggleChat, chat } = useContext(ChatContext);
-
   useEffect(() => {
     if (stream) ws.emit("join-room", { roomId: id, peerId: userId, userName });
-  }, [id, userId, userName, stream]);
+  }, [id, userId, stream, userName]);
 
   useEffect(() => {
-    setRoomId(id);
+    setRoomId(id || "");
   }, [id, setRoomId]);
 
   const screenSharingVideo =
-    screenSharingId === userId ? stream : peers[screenSharingId]?.stream;
+    screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream;
 
-  const {
-    [screenSharingId]: sharing,
-    [userId]: meVideo,
-    ...peersToShow
-  } = peers;
+  const { [screenSharingId]: sharing, ...peersToShow } = peers;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -53,12 +53,7 @@ export const Room = () => {
           {screenSharingId !== userId && (
             <div>
               <VideoPlayer stream={stream} />
-              <input
-                className="border rounded-md p-2 h-10 my-2 w-full"
-                placeholder="Enter your name"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
+              <NameInput />
             </div>
           )}
 

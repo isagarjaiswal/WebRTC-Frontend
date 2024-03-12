@@ -7,6 +7,12 @@ export const VideoPlayer = ({ stream }) => {
   }, [stream]);
 
   return (
-    <video style={{ width: "100%" }} ref={videoRef} autoPlay muted={true} />
+    <video
+      data-testid="peer-video"
+      style={{ width: "100%" }}
+      ref={videoRef}
+      autoPlay
+      muted={true}
+    />
   );
 };
