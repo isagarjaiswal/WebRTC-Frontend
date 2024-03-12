@@ -4,6 +4,7 @@ import {
   useState,
   useReducer,
   useContext,
+  useCallback,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import Peer from "peerjs";
@@ -36,9 +37,13 @@ export const RoomProvider = ({ children }) => {
   const [screenSharingId, setScreenSharingId] = useState("");
   const [roomId, setRoomId] = useState();
 
-  const enterRoom = ({ roomId }) => {
-    navigate(`/room/${roomId}`);
-  };
+  const enterRoom = useCallback(
+    ({ roomId }) => {
+      navigate(`/room/${roomId}`);
+    },
+    [navigate]
+  );
+
   const getUsers = ({ participants }) => {
     dispatch(addAllParticipants(participants));
   };
@@ -105,7 +110,7 @@ export const RoomProvider = ({ children }) => {
       ws.off("user-joined");
       me?.disconnect();
     };
-  }, []);
+  }, [enterRoom, me, userId]);
 
   useEffect(() => {
     if (screenSharingId) {
