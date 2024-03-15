@@ -1,6 +1,7 @@
 .chat-bubble {
   background-color: red;
-  height: 90vh;
+  color: green;
+  height: 100px;
   width: 100%;
 }
 

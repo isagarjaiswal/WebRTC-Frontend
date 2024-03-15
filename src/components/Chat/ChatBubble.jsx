@@ -21,14 +21,12 @@ export const ChatBubble = ({ message }) => {
   const time = new Date(message.timestamp).toLocaleTimeString();
   console.log({ chatBubble: message.content });
   return (
-    <div>
+    <div className="chat-bubble">
       <div>
-        <div>
-          {message.content}
-          <div>{time}</div>
-        </div>
-        <div>{isSelf ? "You" : userName}</div>
+        {message.content}
+        <div>{time}</div>
       </div>
+      <div>{isSelf ? "You" : userName}</div>
     </div>
   );
 };

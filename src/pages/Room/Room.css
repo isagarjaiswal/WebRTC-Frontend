@@ -109,7 +109,9 @@
   height: 100%;
   display: flex;
   align-items: flex-end;
-  background-color: rgba(139, 69, 19, 0.618);
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* participant */
