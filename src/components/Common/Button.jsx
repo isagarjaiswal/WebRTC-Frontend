@@ -4,16 +4,11 @@ import "./Button.css";
 export const Button = ({ children, onClick, className, type }) => {
   return (
     <button
-      style={{
-        backgroundColor: "green",
-        color: "white",
-      }}
       type={type || "submit"}
       onClick={onClick}
-      className={className}
+      className={`${className} main-btn`}
     >
       {children}
     </button>
   );
 };
-

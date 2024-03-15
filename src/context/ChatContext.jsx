@@ -21,21 +21,20 @@ export const ChatProvider = ({ children }) => {
     messages: [],
     isChatOpen: false,
   });
-  console.log({ ws });
-
   const sendMessage = (message, author, roomId) => {
     const messageData = {
       content: message,
       timestamp: new Date().getTime(),
       author: author,
     };
-    chatDispatch(addMessageAction(messageData));
 
+    chatDispatch(addMessageAction(messageData));
     ws.emit("send-message", roomId, messageData);
   };
 
   const addMessage = (message) => {
     console.log("new message", message);
+    alert("fdfdk");
     chatDispatch(addMessageAction(message));
   };
 

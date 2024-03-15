@@ -1,9 +1,11 @@
 import { Button } from "../Common/Button";
+import "./Chat.css"
 
-export const ChatButton = ({ onClick }) => {
+export const ChatButton = ({ onClick, isOpen }) => {
+  console.log({ isOpen });
   return (
-    <Button className="p-4 mx-2 text-xl" onClick={onClick}>
-      send chat
+    <Button onClick={onClick}>
+      {isOpen ? <>Chat Close</> : <>Chat Open</>}
     </Button>
   );
 };

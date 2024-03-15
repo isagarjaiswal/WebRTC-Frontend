@@ -34,6 +34,7 @@ export const RoomProvider = ({ children }) => {
   const [peers, dispatch] = useReducer(peersReducer, {});
   const [screenSharingId, setScreenSharingId] = useState("");
   const [roomId, setRoomId] = useState("");
+  
 
   const enterRoom = ({ roomId }) => {
     navigate(`/room/${roomId}`);

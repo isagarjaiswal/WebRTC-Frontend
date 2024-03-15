@@ -1,0 +1,24 @@
+.main-btn {
+  background-color: #0e78f9;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  padding: 6px 16px;
+}
+
+.main-btn:hover {
+  background-color: #0e78f9;
+}
+
+.main-btn:focus {
+  box-shadow: #0e78f9 0 0 0 3px;
+  outline: none;
+}
