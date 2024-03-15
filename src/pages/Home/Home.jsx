@@ -1,11 +1,11 @@
 import React from "react";
-import  { Join } from "../../components/CreateButton/CreateButton";
+import  { Join } from "../../components/Join/Join";
 
 export const Home = () => {
   return (
-    <div>
+    <>
        <Join />
-    </div>
+    </>
   );
 };
 

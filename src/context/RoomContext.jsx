@@ -14,7 +14,7 @@ import {
   addAllParticipants,
 } from "../reducers/peerAction";
 import { peersReducer } from "../reducers/peerReducer";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./index";
 import { ws } from "../ws";
 
 export const RoomContext = createContext({
@@ -34,7 +34,6 @@ export const RoomProvider = ({ children }) => {
   const [peers, dispatch] = useReducer(peersReducer, {});
   const [screenSharingId, setScreenSharingId] = useState("");
   const [roomId, setRoomId] = useState("");
-  
 
   const enterRoom = ({ roomId }) => {
     navigate(`/room/${roomId}`);

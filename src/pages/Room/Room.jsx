@@ -1,33 +1,22 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { ChatButton } from "../../components/Chat/ChatButton";
-import { VideoPlayer } from "../../components/VideoPlayer/VideoPlayer";
-import { Chat } from "../../components/Chat/Chat";
-import { RoomContext } from "../../context/RoomContext";
-import { UserContext } from "../../context/UserContext";
-import { ChatContext } from "../../context/ChatContext";
+import { VideoPlayer, Chat } from "../../components/index";
+import { RoomContext, UserContext, ChatContext } from "../../context/index";
 import { ws } from "../../ws";
 import "./Room.css";
-import {
-  Camera,
-  // CameraOff,
-  Disc,
-  Mic,
-  // MicOff,
-  Phone,
-  ScreenShare,
-} from "lucide-react";
+import { Camera, Disc, Mic, Phone, ScreenShare } from "lucide-react";
 
 export const Room = () => {
   const { id } = useParams();
   const {
     stream,
-    screenStream,
     peers,
     shareScreen,
+    screenStream,
     screenSharingId,
     setRoomId,
   } = useContext(RoomContext);
+
   const { userName, userId } = useContext(UserContext);
   const { toggleChat, chat } = useContext(ChatContext);
   // const [allStream, setAllStream] = useState("");
@@ -117,6 +106,7 @@ export const Room = () => {
                     {/* <NameInput className={"user-name-input"} /> */}
                   </div>
                 )}
+
                 {Object.values(peersToShow)
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (

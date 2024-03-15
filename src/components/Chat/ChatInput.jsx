@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
-import { ChatContext } from "../../context/ChatContext";
-import { RoomContext } from "../../context/RoomContext";
-import { UserContext } from "../../context/UserContext";
-import { Button } from "../Common/Button";
+import { ChatContext, RoomContext, UserContext } from "../../context/index";
+import { Button } from "../index";
 import "./Chat.css";
-// import { SendHorizontal } from "lucide-react";
+
 export const ChatInput = () => {
   const [message, setMessage] = useState("");
   const { sendMessage } = useContext(ChatContext);

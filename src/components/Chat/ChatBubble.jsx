@@ -1,10 +1,15 @@
 import { useContext } from "react";
-import { RoomContext } from "../../context/RoomContext";
+import { RoomContext, UserContext } from "../../context/index";
 import "./Chat.css";
-import { UserContext } from "../../context/UserContext";
+
 export const ChatBubble = ({ message }) => {
   const { peers } = useContext(RoomContext);
   const { userId } = useContext(UserContext);
+  console.log({ CBB: message.author });
+  console.log({ CBB: peers[message.author].userName });
+  console.log({ peers, userId });
+  console.log({ chatBubble: message.content });
+
   // const author = message.author && peers[message.author].userName;
   // const userName = author || "Anonimus";
   // const isSelf = message.author === userId;
@@ -22,16 +27,14 @@ export const ChatBubble = ({ message }) => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  console.log({ chatBubble: message.content });
   return (
     <>
-      <div className={`msg ${ !isSelf ? "left-msg" : "right-msg"}`}>
+      <div className={`msg ${!isSelf ? "left-msg" : "right-msg"}`}>
         <div className={`msg-bubble`}>
           <div className={`msg-info`}>
             <div className={`msg-info-name`}>{isSelf ? "You" : userName}</div>
             <div className={`msg-info-time`}>{time}</div>
           </div>
-
           <div className={`msg-text`}>{message.content}</div>
         </div>
       </div>

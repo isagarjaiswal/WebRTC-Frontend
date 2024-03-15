@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "./VideoPlayer.css";
-import {
-  // Maximize,
-  Mic,
-  // Minimize
-} from "lucide-react";
+import { Mic } from "lucide-react";
 
 export const VideoPlayer = ({
   stream,
   className,
   userName = "Annonminous",
   isPin,
+  isMuted = true,
 }) => {
   const videoRef = useRef(null);
 
@@ -30,7 +27,7 @@ export const VideoPlayer = ({
       <button className="icons-in-vp mic-icon">
         <Mic color="#fff" />
       </button>
-      <video className={className} ref={videoRef} autoPlay muted={true} />
+      <video className={className} ref={videoRef} autoPlay muted={isMuted} />
     </div>
   );
 };

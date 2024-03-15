@@ -1,7 +1,6 @@
 import { useContext } from "react";
-import { ChatContext } from "../../context/ChatContext";
-import { ChatBubble } from "./ChatBubble";
-import { ChatInput } from "./ChatInput";
+import { ChatContext } from "../../context/index";
+import { ChatBubble, ChatInput } from "../index";
 import "./Chat.css";
 
 export const Chat = () => {

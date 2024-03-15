@@ -1,10 +1,8 @@
-import { Button } from "../Common/Button";
-import { NameInput } from "../Common/Name";
-import { ws } from "../../ws";
-import "./CreateButton.css";
-import MeetingID from "../Common/MeetingID";
 import { useContext } from "react";
-import { RoomContext } from "../../context/RoomContext";
+import { MeetingID, NameInput, Button } from "../index";
+import { RoomContext } from "../../context/index";
+import { ws } from "../../ws";
+import "./Join.css";
 
 export const Join = () => {
   const { roomId } = useContext(RoomContext);

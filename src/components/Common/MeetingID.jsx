@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { RoomContext } from "../../context/RoomContext";
+import { RoomContext } from "../../context/index";
 
-const MeetingID = ({ className }) => {
+export const MeetingID = ({ className }) => {
   const { setRoomId, roomId } = useContext(RoomContext);
   return (
     <input
@@ -13,4 +13,3 @@ const MeetingID = ({ className }) => {
   );
 };
 
-export default MeetingID;
