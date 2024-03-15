@@ -34,7 +34,6 @@ export const ChatProvider = ({ children }) => {
 
   const addMessage = (message) => {
     console.log("new message", message);
-    alert("fdfdk");
     chatDispatch(addMessageAction(message));
   };
 
