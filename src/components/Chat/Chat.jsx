@@ -8,12 +8,14 @@ export const Chat = () => {
   const { chat } = useContext(ChatContext);
   return (
     <>
-      {chat.messages.map((message) => (
-        <ChatBubble
-          message={message}
-          key={message.timestamp + (message?.author || "anonymous")}
-        />
-      ))}
+      <div className="all-chat-msg">
+        {chat.messages.map((message) => (
+          <ChatBubble
+            message={message}
+            key={message.timestamp + (message?.author || "anonymous")}
+          />
+        ))}
+      </div>
 
       <ChatInput />
     </>
