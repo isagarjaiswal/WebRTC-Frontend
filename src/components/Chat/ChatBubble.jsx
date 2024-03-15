@@ -18,15 +18,32 @@ export const ChatBubble = ({ message }) => {
     userName = author.userName || userName; // Use the author's username if available
     isSelf = message.author === userId;
   }
-  const time = new Date(message.timestamp).toLocaleTimeString();
+  const time = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   console.log({ chatBubble: message.content });
   return (
-    <div className="chat-bubble">
-      <div>
-        {message.content}
-        <div>{time}</div>
+    <>
+      <div className={`msg ${isSelf ? "left-msg" : "right-msg"}`}>
+        <div className={`msg-bubble`}>
+          <div className={`msg-info`}>
+            <div className={`msg-info-name`}>{isSelf ? "You" : userName}</div>
+            <div className={`msg-info-time`}>{time}</div>
+          </div>
+
+          <div className={`msg-text`}>{message.content}</div>
+        </div>
       </div>
-      <div>{isSelf ? "You" : userName}</div>
-    </div>
+    </>
   );
 };
+
+/* <div className="chat-bubble">
+<div className="msg-brake-line"></div>
+<div className="name-time-container">
+  <div>{isSelf ? "You" : userName}</div>
+  <div>{time}</div>
+</div>
+<div className="one-msg">{message.content}</div>
+</div> */

@@ -8,7 +8,7 @@ export const Chat = () => {
   const { chat } = useContext(ChatContext);
   return (
     <>
-      <div className="all-chat-msg">
+      <div className={`msger-chat`}>
         {chat.messages.map((message) => (
           <ChatBubble
             message={message}
@@ -16,7 +16,6 @@ export const Chat = () => {
           />
         ))}
       </div>
-
       <ChatInput />
     </>
   );
