@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { SharingScreenButton } from "../../components/SharingScreenButton/SharingScreenButton";
 // import { ChatButton } from "../../components/Chat/ChatButton";
 import { VideoPlayer } from "../../components/VideoPlayer/VideoPlayer";
 import { Chat } from "../../components/Chat/Chat";
@@ -9,7 +8,6 @@ import { UserContext } from "../../context/UserContext";
 import { ChatContext } from "../../context/ChatContext";
 import { ws } from "../../ws";
 import "./Room.css";
-// import { NameInput } from "../../components/Common/Name";
 import {
   Camera,
   // CameraOff,
@@ -17,7 +15,7 @@ import {
   Mic,
   // MicOff,
   Phone,
-  // ScreenShare,
+  ScreenShare,
 } from "lucide-react";
 
 export const Room = () => {
@@ -46,7 +44,6 @@ export const Room = () => {
     screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream;
 
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
-  
 
   return (
     <div className="main-room-container">
@@ -75,9 +72,8 @@ export const Room = () => {
             <button className="btns">
               <Phone className="rotate" size={36} strokeWidth={2} />
             </button>
-            <button disabled={true} className="btns">
-              {/* <ScreenShare /> */}
-              <SharingScreenButton onClick={shareScreen} />
+            <button onClick={shareScreen} className="btns">
+              <ScreenShare />
             </button>
             <button className="btns">
               <Disc />

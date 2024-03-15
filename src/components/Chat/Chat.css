@@ -11,14 +11,8 @@
   padding: 10px;
   overflow-y: auto;
 }
-.msger-chat::-webkit-scrollbar {
-  width: 6px;
-}
-.msger-chat::-webkit-scrollbar-track {
-  background: #ddd;
-}
-.msger-chat::-webkit-scrollbar-thumb {
-  background: #bdbdbd;
+.msger-chatt-scrollbar {
+  display: none;
 }
 .msg {
   display: flex;
