@@ -9,7 +9,7 @@
 .msger-chat {
   flex: 1;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .msger-chat::-webkit-scrollbar {
   width: 6px;

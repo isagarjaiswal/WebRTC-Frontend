@@ -25,7 +25,7 @@ export const ChatBubble = ({ message }) => {
   console.log({ chatBubble: message.content });
   return (
     <>
-      <div className={`msg ${isSelf ? "left-msg" : "right-msg"}`}>
+      <div className={`msg ${ !isSelf ? "left-msg" : "right-msg"}`}>
         <div className={`msg-bubble`}>
           <div className={`msg-info`}>
             <div className={`msg-info-name`}>{isSelf ? "You" : userName}</div>
