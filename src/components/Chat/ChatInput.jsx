@@ -8,7 +8,6 @@ export const ChatInput = () => {
   const { sendMessage } = useContext(ChatContext);
   const { roomId } = useContext(RoomContext);
   const { userId } = useContext(UserContext);
-  console.log({ "Chat-Input-Msg": message });
 
   return (
     <>
