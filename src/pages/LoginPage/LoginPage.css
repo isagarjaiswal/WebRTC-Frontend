@@ -1,0 +1,18 @@
+.google-btn-danger {
+  background-color: red;
+}
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.google-btn {
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 255, 0.827);
+}

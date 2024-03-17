@@ -27,17 +27,18 @@ export const ChatProvider = ({ children }) => {
       timestamp: new Date().getTime(),
       author: author,
     };
-
+    console.log({ messageData });
     chatDispatch(addMessageAction(messageData));
     ws.emit("send-message", roomId, messageData);
   };
 
   const addMessage = (message) => {
-    console.log("new message", message);
+    console.log("ne message", message);
     chatDispatch(addMessageAction(message));
   };
 
   const addHistory = (messages) => {
+    console.log({ messages });
     chatDispatch(addHistoryAction(messages));
   };
 
@@ -53,7 +54,7 @@ export const ChatProvider = ({ children }) => {
       ws.off("add-message");
       ws.off("get-messages");
     };
-  }, []);
+  });
   return (
     <ChatContext.Provider value={{ chat, sendMessage, toggleChat }}>
       {children}

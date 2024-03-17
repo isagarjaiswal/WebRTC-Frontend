@@ -1,12 +1,20 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { VideoPlayer, Chat } from "../../components/index";
-import { RoomContext, UserContext, ChatContext } from "../../context/index";
+import {
+  RoomContext,
+  UserContext,
+  ChatContext,
+  useFirebase,
+} from "../../context/index";
 import { ws } from "../../ws";
 import "./Room.css";
 import { Camera, Disc, Mic, Phone, ScreenShare } from "lucide-react";
 
 export const Room = () => {
+  const { isLoggedIn } = useFirebase();
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const {
     stream,
@@ -33,6 +41,10 @@ export const Room = () => {
     screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream;
 
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
+
+  useEffect(() => {
+    isLoggedIn || navigate("/");
+  }, [navigate, isLoggedIn]);
 
   return (
     <div className="main-room-container">

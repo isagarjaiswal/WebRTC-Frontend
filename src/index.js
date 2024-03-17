@@ -2,33 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { Home } from "./pages/Home/Home";
-import { Room } from "./pages/Room/Room";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { UserProvider } from "./context/UserContext";
-import { RoomProvider } from "./context/RoomContext";
-import { ChatProvider } from "./context/ChatContext";
-
+import { BrowserRouter } from "react-router-dom";
+import {
+  UserProvider,
+  RoomProvider,
+  ChatProvider,
+  FirebaseProvider,
+} from "./context/index";
+import App from "./App.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
-        {/* <Room /> */}
-        <RoomProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/room/:id"
-              element={
-                <ChatProvider>
-                  <Room />
-                </ChatProvider>
-              }
-            />
-          </Routes>
-        </RoomProvider>
-      </UserProvider>
+      <FirebaseProvider>
+        <UserProvider>
+          <RoomProvider>
+            <ChatProvider>
+              <App />
+            </ChatProvider>
+          </RoomProvider>
+        </UserProvider>
+      </FirebaseProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
