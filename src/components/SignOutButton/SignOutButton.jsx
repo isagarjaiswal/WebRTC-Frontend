@@ -1,7 +1,7 @@
 import React from "react";
 import { useFirebase } from "../../context";
 import { useNavigate } from "react-router-dom";
-
+import "./SignOutButton.css";
 export const SignOutButton = () => {
   const { signOut } = useFirebase();
   const navigate = useNavigate();
@@ -18,8 +18,15 @@ export const SignOutButton = () => {
 
   return (
     <>
-      <button onClick={handleSignout}>Sign Out</button>
+      <button
+        class="sign-out-btn-pushable"
+        role="button"
+        onClick={handleSignout}
+      >
+        <span class="sign-out-btn-shadow"></span>
+        <span class="sign-out-btn-edge"></span>
+        <span class="sign-out-btn-front text">Sign Out</span>
+      </button>
     </>
   );
 };
-

@@ -1,22 +1,23 @@
-
 .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333; /* Example background color */
-    color: #fff; /* Example text color */
-    padding: 20px 50px; /* Example padding */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff; /* Example text color */
+  padding: 20px 40px;
+  border-bottom: 1px solid #fff;
+  width: 80%;
+}
 
-  .logo {
-    font-size: 24px; /* Example font size */
-  }
+.logo {
+  font-size: 24px; /* Example font size */
+}
 
-  .nav-header {
-    display: flex;
-  }
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-  .username-in-navbar {
-    font-weight: bold; /* Example font weight */
-    margin-right: 10px; /* Example margin */
-  }
+.username-in-navbar {
+  font-size: 20px; /* Example font weight */
+}

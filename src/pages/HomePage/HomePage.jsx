@@ -12,10 +12,12 @@ export const HomePage = () => {
   return (
     <div className="homepage-container">
       <Navbar />
-      <div className="homepage-sub-container">
-        <NameInput />
-        <MeetingID />
-        <Button onClick={createRoom}>Start new meeting</Button>
+      <div className="room-form-container">
+        <div className="room-form">
+          <NameInput />
+          <MeetingID />
+          <Button onClick={createRoom}>Start new meeting</Button>
+        </div>
       </div>
     </div>
   );
