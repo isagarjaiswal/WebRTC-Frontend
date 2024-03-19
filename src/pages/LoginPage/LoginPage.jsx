@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router";
 import { useFirebase } from "../../context";
+import googleIcon from "../../images/Google_Icons.webp";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,18 +19,22 @@ export const LoginPage = () => {
       setError(error.message);
     }
   };
+
   useEffect(() => {
     isLoggedIn && navigate("/home");
   }, [navigate, isLoggedIn]);
 
   return (
-    <div className="login-page">
-      <button
-        className={`google-btn  ${!error || "google-btn-danger"}`}
-        onClick={handleSigninWithAnotherProvider}
-      >
-        Login With Google
-      </button>
+    <div class="login-page">
+      <div className="login-form">
+        <button
+          className={`google-btn  ${!error || "google-btn-danger"}`}
+          onClick={handleSigninWithAnotherProvider}
+        >
+          <img alt="GoogleImg" src={googleIcon}></img>
+          Login with Google
+        </button>
+      </div>
     </div>
   );
 };

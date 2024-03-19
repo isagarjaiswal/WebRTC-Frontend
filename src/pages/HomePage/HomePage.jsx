@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { MeetingID, NameInput, Button } from "../index";
+import React, { useContext } from "react";
+import "./HomePage.css";
+import { Button, MeetingID, NameInput, Navbar } from "../../components";
 import { RoomContext } from "../../context/index";
 import { ws } from "../../ws";
-import "./Join.css";
 
-export const Join = () => {
+export const HomePage = () => {
   const { roomId } = useContext(RoomContext);
   const createRoom = () => {
     ws.emit("create-room", roomId);
   };
-
   return (
     <div className="homepage-container">
+      <Navbar />
       <div className="homepage-sub-container">
         <NameInput />
         <MeetingID />
