@@ -1,6 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState, useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { VideoPlayer, Chat } from "../../components/index";
+import {
+  VideoPlayer,
+  Chat,
+  UserMediaControlManager,
+} from "../../components/index";
 import {
   RoomContext,
   UserContext,
@@ -9,17 +13,15 @@ import {
 } from "../../context/index";
 import { ws } from "../../ws";
 import "./Room.css";
-import { Camera, Disc, Mic, Phone, ScreenShare } from "lucide-react";
 
 export const Room = () => {
   const { isLoggedIn } = useFirebase();
   const navigate = useNavigate();
-
   const { id } = useParams();
   const {
     stream,
     peers,
-    shareScreen,
+    // shareScreen,
     screenStream,
     screenSharingId,
     setRoomId,
@@ -27,7 +29,7 @@ export const Room = () => {
 
   const { userName, userId } = useContext(UserContext);
   const { toggleChat, chat } = useContext(ChatContext);
-  // const [allStream, setAllStream] = useState("");
+  const [allStream, setAllStream] = useState([]);
 
   useEffect(() => {
     if (stream) ws.emit("join-room", { roomId: id, peerId: userId, userName });
@@ -46,6 +48,21 @@ export const Room = () => {
     isLoggedIn || navigate("/");
   }, [navigate, isLoggedIn]);
 
+  const updateAllStream = useCallback(() => {
+    const newStreams = [];
+    Object.values(peersToShow).forEach((peer) => {
+      peer.stream && newStreams.push(peer.stream);
+    });
+    screenSharingVideo && newStreams.push(screenSharingVideo);
+    stream && newStreams.push(stream);
+    setAllStream((prev) => [...prev, ...newStreams]);
+  }, [peersToShow, screenSharingVideo, stream, setAllStream]);
+
+  // Combine all updates into a single useEffect
+  useEffect(() => {
+    updateAllStream();
+  }, [updateAllStream]);
+
   return (
     <div className="main-room-container">
       <div className="room-container">
@@ -61,25 +78,8 @@ export const Room = () => {
               )}
             </div>
           </div>
-          <div className="video-controller">
-            <button className="btns">
-              <Camera />
-              {/* <CameraOff /> */}
-            </button>
-            <button className="btns">
-              <Mic />
-              {/* <MicOff /> */}
-            </button>
-            <button className="btns">
-              <Phone className="rotate" size={36} strokeWidth={2} />
-            </button>
-            <button onClick={shareScreen} className="btns">
-              <ScreenShare />
-            </button>
-            <button className="btns">
-              <Disc />
-            </button>
-          </div>
+          {/* only for user controll btn  */}
+          <UserMediaControlManager stream={stream} />
         </div>
 
         <div className="right-room-container">
@@ -109,27 +109,8 @@ export const Room = () => {
 
             {!chat.isChatOpen && (
               <div className="participant-container">
-                {screenSharingId !== userId && (
-                  <div className="participant">
-                    <VideoPlayer
-                      className={"participant-class-for-vp"}
-                      stream={stream}
-                    />
-                    {/* <NameInput className={"user-name-input"} /> */}
-                  </div>
-                )}
-
-                {Object.values(peersToShow)
-                  .filter((peer) => !!peer.stream)
-                  .map((peer) => (
-                    <div className="participant" key={peer.peerId}>
-                      <VideoPlayer
-                        userName={peer.userName}
-                        className={"participant-class-for-vp"}
-                        stream={peer.stream}
-                      />
-                    </div>
-                  ))}
+                {allStream &&
+                  allStream?.map((str) => <VideoPlayer stream={str} />)}
               </div>
             )}
           </div>
@@ -179,3 +160,29 @@ export const Room = () => {
   <ChatButton onClick={toggleChat} isOpen={chat.isChatOpen} />
 </div>
 </div> */
+
+// 19 march
+
+/* <div className="participant-container">
+                {screenSharingId !== userId && (
+                  <div className="participant">
+                    <VideoPlayer
+                      className={"participant-class-for-vp"}
+                      stream={stream}
+                    />
+                  </div>
+                )}
+                {Object.values(peersToShow)
+                  .filter((peer) => !!peer.stream)
+                  .map((peer) => (
+                    <div className="participant" key={peer.peerId}>
+                      <VideoPlayer
+                        userName={peer.userName}
+                        className={"participant-class-for-vp"}
+                        stream={peer.stream}
+                      />
+                    </div>
+                  ))}
+
+              </div>
+               */

@@ -27,7 +27,7 @@ body {
 .google-btn {
   border-radius: 20px;
   border: none;
-  background: #384d73;
+  background: rgb(83, 110, 203);
   padding: 10px;
   color: #ffffff;
   box-shadow: 0 2px 10px -3px #719be6;
@@ -40,5 +40,5 @@ body {
 }
 
 .google-btn-danger {
-  background-color: rgba(197, 42, 42, 0.807);
+  background: rgb(67, 110, 203);
 }

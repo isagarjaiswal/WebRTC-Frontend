@@ -16,7 +16,7 @@ export const HomePage = () => {
         <div className="room-form">
           <NameInput />
           <MeetingID />
-          <Button onClick={createRoom}>Start new meeting</Button>
+          <Button onClick={createRoom}>Start New Meeting</Button>
         </div>
       </div>
     </div>

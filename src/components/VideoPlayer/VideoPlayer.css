@@ -17,7 +17,6 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   z-index: 1;
-
   border-top-right-radius: 10px;
 }
 .username-in-pin-videoplayer {
@@ -36,11 +35,7 @@
   z-index: 1;
   border: none;
 }
-.mic-icon {
-  top: 5px;
-  right: 10px;
-}
-.maximise-icon {
-  bottom: 20px;
-  right: 10px;
+
+.video-error-message {
+  color: salmon;
 }

@@ -7,3 +7,4 @@ export { ChatBubble } from "./Chat/ChatBubble";
 export { ChatInput } from "./Chat/ChatInput";
 export { SignOutButton } from "./SignOutButton/SignOutButton";
 export { Navbar } from "./Navbar/Navbar";
+export { UserMediaControlManager } from "./UserMediaControlManager/UserMediaControlManager";

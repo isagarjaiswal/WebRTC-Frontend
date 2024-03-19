@@ -48,7 +48,6 @@ export const FirebaseProvider = (props) => {
         setUserName(null);
       }
     });
-
     return () => unsubscribe();
   }, []);
 

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
+import { useFirebase } from "../context/index";
 
 export const UserContext = createContext({
   userId: "",
@@ -9,8 +10,10 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }) => {
   const [userId] = useState(localStorage.getItem("userId") || uuidV4());
+  const { userName: name } = useFirebase();
+
   const [userName, setUserName] = useState(
-    localStorage.getItem("userName") || ""
+    localStorage.getItem("userName") || name
   );
 
   useEffect(() => {
