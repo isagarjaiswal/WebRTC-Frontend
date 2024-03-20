@@ -6,12 +6,13 @@ export const VideoPlayer = ({ stream, className }) => {
   useEffect(() => {
     if (videoRef.current && stream) videoRef.current.srcObject = stream;
   }, [stream]);
+
   return (
     <>
       {stream ? (
         <video ref={videoRef} autoPlay muted={true} className={`video-player ${className}`} />
       ) : (
-        <div className={`video-error-message ${className}`}>
+        <div className={`video-player video-error-message ${className}`}>
           Permission denied for video call.
         </div>
       )}

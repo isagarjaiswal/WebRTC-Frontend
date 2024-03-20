@@ -22,7 +22,7 @@ export const Room = () => {
     stream,
     screenStream,
     peers,
-    // shareScreen,
+    shareScreen,
     screenSharingId,
     setRoomId,
   } = useContext(RoomContext);
@@ -53,12 +53,8 @@ export const Room = () => {
           <div className="pin-display">
             <div className="temp-class">
               {screenSharingVideo && (
-                <div>
-                  <VideoPlayer
-                    // isPin={true}
-                    className={"pin-display-vp"}
-                    stream={screenSharingVideo}
-                  />
+                <div className="">
+                  <VideoPlayer stream={screenSharingVideo} />
                 </div>
               )}
             </div>
@@ -94,43 +90,19 @@ export const Room = () => {
 
             {!chat.isChatOpen && (
               <div className="participant-container">
-                {/* {screenSharingId !== userId && ( */}
-                {/* <div className="participant"> */}
-                {/* <VideoPlayer
-                      className={"participant-class-for-vp"}
-                      stream={stream}
-                    /> */}
-                {/* <NameInput  className={"user-name-input"} /> */}
-                {/* </div> */}
-                {/* )} */}
-                {/* {Object.values(peersToShow) */}
-                {/* .filter((peer) => !!peer.stream) */}
-                {/* .map((peer) => ( */}
-                {/* <div className="participant" key={peer.peerId}> */}
-                {/* <VideoPlayer */}
-                {/* // userName={peer.userName} */}
-                {/* className={"participant-class-for-vp"} */}
-                {/* stream={peer.stream} */}
-                {/* /> */}
-                {/* </div> */}
-                {/* ))} */}
                 {screenSharingId !== userId && (
-                  <div>
-                    <VideoPlayer className={"khud ka"} stream={stream} />
-                    {/* {console.log({stream})} */}
-                    {console.log("120")}
+                  <div className="participant">
+                    <VideoPlayer stream={stream} />
+                    <NameInput />
                   </div>
                 )}
 
                 {Object.values(peersToShow)
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (
-                    <div key={peer.peerId}>
-                      <VideoPlayer
-
-                      className={"niche ka"}stream={peer.stream} />
-                      {/* {console.log(peer.stream)} */}
-                      {console.log("130")}
+                    <div className="participant" key={peer.peerId}>
+                      <VideoPlayer stream={peer.stream} />
+                      <div>{peer.userName}</div>
                     </div>
                   ))}
               </div>

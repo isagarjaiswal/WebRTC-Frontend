@@ -1,19 +1,21 @@
 import { createContext, useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
-import { useFirebase } from "../context/index";
+// import { useFirebase } from "./FirebaseContext";
 
-export const UserContext = createContext({
-  userId: "",
-  userName: "",
-  setUserName: (userName) => {},
-});
+export const UserContext =
+  createContext <
+  UserValue >
+  {
+    userId: "",
+    userName: "",
+    setUserName: (userName) => {},
+  };
 
 export const UserProvider = ({ children }) => {
+  // const { userName: name } = useFirebase();
   const [userId] = useState(localStorage.getItem("userId") || uuidV4());
-  const { userName: name } = useFirebase();
-
   const [userName, setUserName] = useState(
-    localStorage.getItem("userName") || name
+    localStorage.getItem("userName") || ""
   );
 
   useEffect(() => {

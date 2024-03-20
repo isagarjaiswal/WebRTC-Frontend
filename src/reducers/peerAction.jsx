@@ -16,8 +16,7 @@ export const removePeerStreamAction = (peerId) => ({
   payload: { peerId },
 });
 
-export const addAllParticipants = (peers) => ({
+export const addAllPeersAction = (peers) => ({
   type: ADD_ALL_PEERS,
   payload: { peers },
 });
-

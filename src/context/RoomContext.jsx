@@ -6,20 +6,18 @@ import {
   useContext,
 } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Peer from "peerjs";
+import { ws } from "../ws";
 
+import { peersReducer } from "../reducers/peerReducer";
 import {
   addPeerStreamAction,
   addPeerNameAction,
   removePeerStreamAction,
-  addAllParticipants,
+  addAllPeersAction,
 } from "../reducers/peerAction";
 
-import { peersReducer } from "../reducers/peerReducer";
-import { UserContext } from "./index";
-import { ws } from "../ws";
-
+import { UserContext } from "./UserContext";
 export const RoomContext = createContext({
   peers: {},
   shareScreen: () => {},
@@ -41,10 +39,8 @@ export const RoomProvider = ({ children }) => {
   const enterRoom = ({ roomId }) => {
     navigate(`/room/${roomId}`);
   };
-
   const getUsers = ({ participants }) => {
-    console.log(participants);
-    dispatch(addAllParticipants(participants));
+    dispatch(addAllPeersAction(participants));
   };
 
   const removePeer = (peerId) => {
@@ -53,7 +49,6 @@ export const RoomProvider = ({ children }) => {
 
   const switchStream = (stream) => {
     setScreenSharingId(me?.id || "");
-    // setStream(stream);
     Object.values(me?.connections).forEach((connection) => {
       const videoTrack = stream
         ?.getTracks()
@@ -88,14 +83,13 @@ export const RoomProvider = ({ children }) => {
   }, [userName, userId, roomId]);
 
   useEffect(() => {
-    //   const peer = new Peer(userId, {
-    //       host: "localhost",
-    //       port: 9001,
-    //       path: "/",
-    //   });
-    const peer = new Peer(userId);
-    console.log({ peer });
+    const peer = new Peer(userId, {
+      host: "localhost",
+      port: 9001,
+      path: "/",
+    });
     setMe(peer);
+
     try {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
@@ -138,16 +132,16 @@ export const RoomProvider = ({ children }) => {
     if (!me) return;
     if (!stream) return;
     ws.on("user-joined", ({ peerId, userName: name }) => {
+      dispatch(addPeerNameAction(peerId, name));
+
       const call = me.call(peerId, stream, {
         metadata: {
           userName,
         },
       });
-
       call.on("stream", (peerStream) => {
         dispatch(addPeerStreamAction(peerId, peerStream));
       });
-      dispatch(addPeerNameAction(peerId, name));
     });
 
     me.on("call", (call) => {
@@ -158,7 +152,7 @@ export const RoomProvider = ({ children }) => {
         dispatch(addPeerStreamAction(call.peer, peerStream));
       });
     });
-    
+
     return () => {
       ws.off("user-joined");
     };

@@ -1,7 +1,7 @@
 import {
   ADD_PEER_STREAM,
-  ADD_PEER_NAME,
   REMOVE_PEER_STREAM,
+  ADD_PEER_NAME,
   ADD_ALL_PEERS,
 } from "./peerAction";
 

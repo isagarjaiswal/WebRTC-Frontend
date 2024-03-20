@@ -6,8 +6,8 @@ import "./Chat.css";
 export const ChatInput = () => {
   const [message, setMessage] = useState("");
   const { sendMessage } = useContext(ChatContext);
-  const { roomId } = useContext(RoomContext);
   const { userId } = useContext(UserContext);
+  const { roomId } = useContext(RoomContext);
 
   return (
     <>
