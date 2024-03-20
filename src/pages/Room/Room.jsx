@@ -23,7 +23,7 @@ export const Room = () => {
     stream,
     screenStream,
     peers,
-    shareScreen,
+    // shareScreen,
     screenSharingId,
     setRoomId,
   } = useContext(RoomContext);
