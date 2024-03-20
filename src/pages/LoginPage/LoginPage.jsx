@@ -25,7 +25,7 @@ export const LoginPage = () => {
   }, [navigate, isLoggedIn]);
 
   return (
-    <div class="login-page">
+    <div className="login-page">
       <div className="login-form">
         <button
           className={`google-btn  ${!error || "google-btn-danger"}`}

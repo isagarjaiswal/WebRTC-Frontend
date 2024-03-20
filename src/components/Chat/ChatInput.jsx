@@ -26,11 +26,7 @@ export const ChatInput = () => {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
-        <Button
-          aria-label="Send message"
-          type="submit"
-          className="msg-send-btn"
-        >
+        <Button aria-label="Send message" type="submit">
           Send
         </Button>
       </form>

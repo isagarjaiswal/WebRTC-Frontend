@@ -7,13 +7,14 @@ export const VideoPlayer = ({
   className,
   userName = "Annonminous",
   isPin,
-  isMuted = true,
+  // isMuted = true,
 }) => {
+  console.log({ stream });
   const videoRef = useRef(null);
   const [isMute, setIsMute] = useState(false);
+
   useEffect(() => {
     if (videoRef.current && stream) videoRef.current.srcObject = stream;
-    videoRef.current.style.transform = "scaleX(-1)";
   }, [stream]);
 
   const toggleAudio = () => {
@@ -33,14 +34,16 @@ export const VideoPlayer = ({
           isPin && "username-in-pin-videoplayer"
         }`}
       >
-        {userName.length > 20 ? userName.substring(0, 20) + "..." : userName}
+        {stream && userName.length > 20
+          ? userName.substring(0, 20) + "..."
+          : userName}
       </div>
+      {/* <button onClick={toggleAudio} className="icons-in-vp mic-icon">
+        {stream && isMute ? <Mic /> : <MicOff />}
+      </button> */}
 
-      <button onClick={toggleAudio} className="icons-in-vp mic-icon">
-        {isMute ? <Mic /> : <MicOff />}
-      </button>
       {stream ? (
-        <video className={className} ref={videoRef} autoPlay muted={isMute} />
+        <video className={className} ref={videoRef} autoPlay />
       ) : (
         <div className="video-error-message">
           Permission denied for video call.

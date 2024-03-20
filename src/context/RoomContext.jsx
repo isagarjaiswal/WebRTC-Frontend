@@ -6,13 +6,16 @@ import {
   useContext,
 } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Peer from "peerjs";
+
 import {
   addPeerStreamAction,
   addPeerNameAction,
   removePeerStreamAction,
   addAllParticipants,
 } from "../reducers/peerAction";
+
 import { peersReducer } from "../reducers/peerReducer";
 import { UserContext } from "./index";
 import { ws } from "../ws";
@@ -88,8 +91,8 @@ export const RoomProvider = ({ children }) => {
     //       path: "/",
     //   });
     const peer = new Peer(userId);
+    console.log({ peer });
     setMe(peer);
-
     try {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })

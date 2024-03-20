@@ -2,6 +2,7 @@ import React from "react";
 import "./Button.css";
 
 export const Button = ({ children, onClick, className, type }) => {
+  
   return (
     <button
       type={type || "submit"}

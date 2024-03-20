@@ -1,5 +1,7 @@
 .video-player-container {
   position: relative;
+  width: 100px;
+  height: 100px;
 }
 .username-in-videoplayer {
   position: absolute;
@@ -38,4 +40,7 @@
 
 .video-error-message {
   color: salmon;
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }

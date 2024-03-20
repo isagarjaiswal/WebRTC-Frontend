@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   VideoPlayer,
@@ -20,16 +20,14 @@ export const Room = () => {
   const { id } = useParams();
   const {
     stream,
+    screenStream,
     peers,
     // shareScreen,
-    screenStream,
     screenSharingId,
     setRoomId,
   } = useContext(RoomContext);
-
   const { userName, userId } = useContext(UserContext);
   const { toggleChat, chat } = useContext(ChatContext);
-  const [allStream, setAllStream] = useState([]);
 
   useEffect(() => {
     if (stream) ws.emit("join-room", { roomId: id, peerId: userId, userName });
@@ -48,21 +46,6 @@ export const Room = () => {
     isLoggedIn || navigate("/");
   }, [navigate, isLoggedIn]);
 
-  const updateAllStream = useCallback(() => {
-    const newStreams = [];
-    Object.values(peersToShow).forEach((peer) => {
-      peer.stream && newStreams.push(peer.stream);
-    });
-    screenSharingVideo && newStreams.push(screenSharingVideo);
-    stream && newStreams.push(stream);
-    setAllStream((prev) => [...prev, ...newStreams]);
-  }, [peersToShow, screenSharingVideo, stream, setAllStream]);
-
-  // Combine all updates into a single useEffect
-  useEffect(() => {
-    updateAllStream();
-  }, [updateAllStream]);
-
   return (
     <div className="main-room-container">
       <div className="room-container">
@@ -70,11 +53,13 @@ export const Room = () => {
           <div className="pin-display">
             <div className="temp-class">
               {screenSharingVideo && (
-                <VideoPlayer
-                  isPin={true}
-                  className="pin-display-vp"
-                  stream={screenSharingVideo}
-                />
+                <div>
+                  <VideoPlayer
+                    isPin={true}
+                    className={"pin-display-vp"}
+                    stream={screenSharingVideo}
+                  />
+                </div>
               )}
             </div>
           </div>
@@ -109,8 +94,29 @@ export const Room = () => {
 
             {!chat.isChatOpen && (
               <div className="participant-container">
-                {allStream &&
-                  allStream?.map((str) => <VideoPlayer stream={str} />)}
+                {screenSharingId !== userId && (
+                  <div className="participant">
+                    <VideoPlayer
+                      className={"participant-class-for-vp"}
+                      stream={stream}
+                    />
+                    {/* <NameInput  className={"user-name-input"} /> */}
+                  </div>
+                )}
+                {Object.values(peersToShow)
+                  .filter((peer) => !!peer.stream)
+                  .map((peer) => (
+                    <div
+                      className=""
+                      userName={peer.userName}
+                      key={peer.peerId}
+                    >
+                      <VideoPlayer
+                        className={"participant-class-for-vp"}
+                        stream={peer.stream}
+                      />
+                    </div>
+                  ))}
               </div>
             )}
           </div>

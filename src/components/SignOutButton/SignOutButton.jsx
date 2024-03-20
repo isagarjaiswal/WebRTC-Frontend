@@ -19,10 +19,10 @@ export const SignOutButton = () => {
 
   return (
     <>
-      <button class="sign-out-btn-pushable" onClick={handleSignout}>
-        <span class="sign-out-btn-shadow"></span>
-        <span class="sign-out-btn-edge"></span>
-        <span class="sign-out-btn-front text">Sign Out</span>
+      <button className="sign-out-btn-pushable" onClick={handleSignout}>
+        <span className="sign-out-btn-shadow"></span>
+        <span className="sign-out-btn-edge"></span>
+        <span className="sign-out-btn-front text">Sign Out</span>
       </button>
     </>
   );
