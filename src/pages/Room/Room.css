@@ -132,7 +132,7 @@
   border-radius: 12px;
 }
 .participant-class-for-vp {
-  height: 200px;
+  height: 100px;
   border-radius: 20px;
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5),
     -4px -4px 16px rgba(255, 255, 255, 0.05);

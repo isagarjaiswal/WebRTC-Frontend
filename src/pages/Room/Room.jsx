@@ -55,7 +55,7 @@ export const Room = () => {
               {screenSharingVideo && (
                 <div>
                   <VideoPlayer
-                    isPin={true}
+                    // isPin={true}
                     className={"pin-display-vp"}
                     stream={screenSharingVideo}
                   />
@@ -106,12 +106,9 @@ export const Room = () => {
                 {Object.values(peersToShow)
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (
-                    <div
-                      className=""
-                      userName={peer.userName}
-                      key={peer.peerId}
-                    >
+                    <div className="participant" key={peer.peerId}>
                       <VideoPlayer
+                        // userName={peer.userName}
                         className={"participant-class-for-vp"}
                         stream={peer.stream}
                       />
