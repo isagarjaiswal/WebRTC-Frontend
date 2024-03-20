@@ -116,7 +116,7 @@ export const Room = () => {
                 {/* ))} */}
                 {screenSharingId !== userId && (
                   <div>
-                    <VideoPlayer stream={stream} />
+                    <VideoPlayer className={"khud ka"} stream={stream} />
                     {/* {console.log({stream})} */}
                     {console.log("120")}
                   </div>
@@ -126,7 +126,9 @@ export const Room = () => {
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (
                     <div key={peer.peerId}>
-                      <VideoPlayer stream={peer.stream} />
+                      <VideoPlayer
+
+                      className={"niche ka"}stream={peer.stream} />
                       {/* {console.log(peer.stream)} */}
                       {console.log("130")}
                     </div>
