@@ -4,6 +4,7 @@ import {
   VideoPlayer,
   Chat,
   UserMediaControlManager,
+  NameInput,
 } from "../../components/index";
 import {
   RoomContext,

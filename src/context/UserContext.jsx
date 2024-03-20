@@ -2,14 +2,11 @@ import { createContext, useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 // import { useFirebase } from "./FirebaseContext";
 
-export const UserContext =
-  createContext <
-  UserValue >
-  {
-    userId: "",
-    userName: "",
-    setUserName: (userName) => {},
-  };
+export const UserContext = createContext({
+  userId: "",
+  userName: "",
+  setUserName: (userName) => {},
+});
 
 export const UserProvider = ({ children }) => {
   // const { userName: name } = useFirebase();
