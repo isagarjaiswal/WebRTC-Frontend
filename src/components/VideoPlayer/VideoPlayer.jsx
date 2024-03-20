@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-
+import "./VideoPlayer.css";
 export const VideoPlayer = ({ stream, className }) => {
   const videoRef = useRef(null);
 
@@ -7,13 +7,15 @@ export const VideoPlayer = ({ stream, className }) => {
     if (videoRef.current && stream) videoRef.current.srcObject = stream;
   }, [stream]);
   return (
-    <video
-      data-testid="peer-video"
-      ref={videoRef}
-      autoPlay
-      muted={true}
-      className={className}
-    />
+    <>
+      {stream ? (
+        <video ref={videoRef} autoPlay muted={true} className={`video-player ${className}`} />
+      ) : (
+        <div className={`video-error-message ${className}`}>
+          Permission denied for video call.
+        </div>
+      )}
+    </>
   );
 };
 

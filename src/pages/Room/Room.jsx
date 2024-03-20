@@ -94,27 +94,39 @@ export const Room = () => {
 
             {!chat.isChatOpen && (
               <div className="participant-container">
-                {screenSharingId !== userId && (
-                  <div className="participant">
-                    <VideoPlayer
+                {/* {screenSharingId !== userId && ( */}
+                {/* <div className="participant"> */}
+                {/* <VideoPlayer
                       className={"participant-class-for-vp"}
                       stream={stream}
-                    />
-                    {/* <NameInput  className={"user-name-input"} /> */}
+                    /> */}
+                {/* <NameInput  className={"user-name-input"} /> */}
+                {/* </div> */}
+                {/* )} */}
+                {/* {Object.values(peersToShow) */}
+                {/* .filter((peer) => !!peer.stream) */}
+                {/* .map((peer) => ( */}
+                {/* <div className="participant" key={peer.peerId}> */}
+                  {/* <VideoPlayer */}
+                    {/* // userName={peer.userName} */}
+                    {/* className={"participant-class-for-vp"} */}
+                    {/* stream={peer.stream} */}
+                  {/* /> */}
+                {/* </div> */}
+                {/* ))} */}
+                {screenSharingId !== userId && (
+                  <div>
+                    <VideoPlayer stream={stream} />
                   </div>
                 )}
+
                 {Object.values(peersToShow)
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (
-                    <div className="participant" key={peer.peerId}>
-                      <VideoPlayer
-                        // userName={peer.userName}
-                        className={"participant-class-for-vp"}
-                        stream={peer.stream}
-                      />
+                    <div key={peer.peerId}>
+                      <VideoPlayer stream={peer.stream} />
                     </div>
                   ))}
-                  
               </div>
             )}
           </div>
