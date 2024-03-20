@@ -42,6 +42,8 @@ export const RoomProvider = ({ children }) => {
     navigate(`/room/${roomId}`);
   };
   const getUsers = ({ participants }) => {
+    console.log({ participants });
+
     dispatch(addAllParticipants(participants));
   };
 
@@ -51,6 +53,7 @@ export const RoomProvider = ({ children }) => {
 
   const switchStream = (stream) => {
     setScreenSharingId(me?.id || "");
+    setStream(stream)
     Object.values(me?.connections).forEach((connection) => {
       const videoTrack = stream
         ?.getTracks()
@@ -135,7 +138,6 @@ export const RoomProvider = ({ children }) => {
     if (!me) return;
     if (!stream) return;
     ws.on("user-joined", ({ peerId, userName: name }) => {
-
       const call = me.call(peerId, stream, {
         metadata: {
           userName,
@@ -145,7 +147,6 @@ export const RoomProvider = ({ children }) => {
         dispatch(addPeerStreamAction(peerId, peerStream));
       });
       dispatch(addPeerNameAction(peerId, name));
-
     });
 
     me.on("call", (call) => {

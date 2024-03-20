@@ -107,16 +107,18 @@ export const Room = () => {
                 {/* .filter((peer) => !!peer.stream) */}
                 {/* .map((peer) => ( */}
                 {/* <div className="participant" key={peer.peerId}> */}
-                  {/* <VideoPlayer */}
-                    {/* // userName={peer.userName} */}
-                    {/* className={"participant-class-for-vp"} */}
-                    {/* stream={peer.stream} */}
-                  {/* /> */}
+                {/* <VideoPlayer */}
+                {/* // userName={peer.userName} */}
+                {/* className={"participant-class-for-vp"} */}
+                {/* stream={peer.stream} */}
+                {/* /> */}
                 {/* </div> */}
                 {/* ))} */}
                 {screenSharingId !== userId && (
                   <div>
                     <VideoPlayer stream={stream} />
+                    {/* {console.log({stream})} */}
+                    {console.log("120")}
                   </div>
                 )}
 
@@ -125,6 +127,8 @@ export const Room = () => {
                   .map((peer) => (
                     <div key={peer.peerId}>
                       <VideoPlayer stream={peer.stream} />
+                      {/* {console.log(peer.stream)} */}
+                      {console.log("130")}
                     </div>
                   ))}
               </div>

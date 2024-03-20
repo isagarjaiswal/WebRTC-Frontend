@@ -7,7 +7,7 @@ import { ws } from "../../ws";
 export const HomePage = () => {
   const { roomId } = useContext(RoomContext);
   const createRoom = () => {
-    ws.emit("create-room", roomId);
+    ws.emit("create-room", { roomId });
   };
   return (
     <div className="homepage-container">

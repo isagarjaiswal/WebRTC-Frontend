@@ -25,9 +25,8 @@ export const ChatProvider = ({ children }) => {
     const messageData = {
       content: message,
       timestamp: new Date().getTime(),
-      author,
+      author: author,
     };
-    console.log({ messageData });
     chatDispatch(addMessageAction(messageData));
     ws.emit("send-message", roomId, messageData);
   };
