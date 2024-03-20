@@ -135,7 +135,6 @@ export const RoomProvider = ({ children }) => {
     if (!me) return;
     if (!stream) return;
     ws.on("user-joined", ({ peerId, userName: name }) => {
-      dispatch(addPeerNameAction(peerId, name));
 
       const call = me.call(peerId, stream, {
         metadata: {
@@ -145,6 +144,8 @@ export const RoomProvider = ({ children }) => {
       call.on("stream", (peerStream) => {
         dispatch(addPeerStreamAction(peerId, peerStream));
       });
+      dispatch(addPeerNameAction(peerId, name));
+
     });
 
     me.on("call", (call) => {

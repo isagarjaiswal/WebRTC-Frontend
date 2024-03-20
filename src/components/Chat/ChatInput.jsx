@@ -14,7 +14,7 @@ export const ChatInput = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage(message, userId, roomId);
+          sendMessage(message, roomId, userId);
           setMessage("");
         }}
         className="msg-inputarea"
@@ -26,9 +26,7 @@ export const ChatInput = () => {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
-        <Button aria-label="Send message" type="submit">
-          Send
-        </Button>
+        <Button type="submit">Send</Button>
       </form>
     </>
   );

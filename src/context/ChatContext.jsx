@@ -21,11 +21,11 @@ export const ChatProvider = ({ children }) => {
     messages: [],
     isChatOpen: false,
   });
-  const sendMessage = (message, author, roomId) => {
+  const sendMessage = (message, roomId, author) => {
     const messageData = {
       content: message,
       timestamp: new Date().getTime(),
-      author: author,
+      author,
     };
     console.log({ messageData });
     chatDispatch(addMessageAction(messageData));

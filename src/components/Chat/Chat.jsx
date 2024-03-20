@@ -22,10 +22,10 @@ export const Chat = () => {
     <>
       <div className="msger-chat">
         <ScrollToBottom>
-          {chat.messages.map((message, index) => (
+          {chat.messages.map((message) => (
             <ChatBubble
               message={message}
-              key={message.timestamp + (message?.author || "anonymous") + index}
+              key={message.timestamp + (message?.author || "anonymous")}
             />
           ))}
           <div ref={messagesEndRef} />
