@@ -38,9 +38,9 @@ export const VideoPlayer = ({
           ? userName.substring(0, 20) + "..."
           : userName}
       </div>
-      {/* <button onClick={toggleAudio} className="icons-in-vp mic-icon">
+      <button onClick={toggleAudio} className="icons-in-vp mic-icon">
         {stream && isMute ? <Mic /> : <MicOff />}
-      </button> */}
+      </button>
 
       {stream ? (
         <video className={className} ref={videoRef} autoPlay />
