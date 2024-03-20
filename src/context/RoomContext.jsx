@@ -8,7 +8,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import Peer from "peerjs";
 import { ws } from "../ws";
-
 import { peersReducer } from "../reducers/peerReducer";
 import {
   addPeerStreamAction,
@@ -18,6 +17,7 @@ import {
 } from "../reducers/peerAction";
 
 import { UserContext } from "./UserContext";
+
 export const RoomContext = createContext({
   peers: {},
   shareScreen: () => {},
@@ -25,6 +25,10 @@ export const RoomContext = createContext({
   screenSharingId: "",
   roomId: "",
 });
+
+if (!!window.Cypress) {
+  window.Peer = Peer;
+}
 
 export const RoomProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -83,13 +87,12 @@ export const RoomProvider = ({ children }) => {
   }, [userName, userId, roomId]);
 
   useEffect(() => {
-    const peer = new Peer(userId, {
-      host: "localhost",
-      port: 9001,
-      path: "/",
-    });
+    // const peer = new Peer(userId, {
+    //     host: "peerjs.webrtctest.online",
+    //     path: "/",
+    // });
+    const peer = new Peer(userId);
     setMe(peer);
-
     try {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
@@ -132,8 +135,6 @@ export const RoomProvider = ({ children }) => {
     if (!me) return;
     if (!stream) return;
     ws.on("user-joined", ({ peerId, userName: name }) => {
-      dispatch(addPeerNameAction(peerId, name));
-
       const call = me.call(peerId, stream, {
         metadata: {
           userName,
@@ -142,6 +143,7 @@ export const RoomProvider = ({ children }) => {
       call.on("stream", (peerStream) => {
         dispatch(addPeerStreamAction(peerId, peerStream));
       });
+      dispatch(addPeerNameAction(peerId, name));
     });
 
     me.on("call", (call) => {

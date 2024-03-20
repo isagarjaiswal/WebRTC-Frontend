@@ -92,7 +92,7 @@ export const Room = () => {
             {!chat.isChatOpen && (
               <div className="participant-container">
                 {screenSharingId !== userId && (
-                  <div className="participant">
+                  <div>
                     <VideoPlayer stream={stream} />
                     <NameInput />
                   </div>
@@ -101,7 +101,7 @@ export const Room = () => {
                 {Object.values(peersToShow)
                   .filter((peer) => !!peer.stream)
                   .map((peer) => (
-                    <div className="participant" key={peer.peerId}>
+                    <div key={peer.peerId}>
                       <VideoPlayer stream={peer.stream} />
                       <div>{peer.userName}</div>
                     </div>

@@ -6,11 +6,9 @@ export const ChatBubble = ({ message }) => {
   const { peers } = useContext(RoomContext);
   const { userId } = useContext(UserContext);
   const author = message.author && peers[message.author].userName;
-  console.log({ author });
   const userName = author || "Anonimus";
   const isSelf = message.author === userId;
   const time = new Date(message.timestamp).toLocaleTimeString();
-
   return (
     <>
       <div className={`msg ${!isSelf ? "left-msg" : "right-msg"}`}>

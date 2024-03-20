@@ -1,7 +1,12 @@
-import React, { useContext } from "react";
+import React from "react"; // useContext
 import "./HomePage.css";
-import { Button, MeetingID, NameInput, Navbar } from "../../components";
-import { RoomContext, UserContext } from "../../context/index";
+import {
+  Button,
+  //  MeetingID,
+  NameInput,
+  Navbar,
+} from "../../components";
+// import { RoomContext, UserContext } from "../../context/index";
 import { ws } from "../../ws";
 
 export const HomePage = () => {
@@ -19,7 +24,7 @@ export const HomePage = () => {
       <Navbar />
       <div className="room-form-container">
         <NameInput />
-        <Button onClick={createRoom} className="py-2 px-8 text-xl">
+        <Button onClick={createRoom} className="">
           Start new meeting
         </Button>
         {/* <MeetingID /> */}

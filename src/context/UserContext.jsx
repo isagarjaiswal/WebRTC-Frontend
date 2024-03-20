@@ -5,11 +5,12 @@ import { v4 as uuidV4 } from "uuid";
 export const UserContext = createContext({
   userId: "",
   userName: "",
-  setUserName: (userName) => {},
+  setUserName: () => {},
 });
 
 export const UserProvider = ({ children }) => {
   // const { userName: name } = useFirebase();
+
   const [userId] = useState(localStorage.getItem("userId") || uuidV4());
   const [userName, setUserName] = useState(
     localStorage.getItem("userName") || ""
