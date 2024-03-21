@@ -10,7 +10,7 @@ import {
   RoomContext,
   // UserContext
 } from "../../context/index";
-import { ws } from "../../ws";
+import  ws  from "../../ws";
 
 export const HomePage = () => {
   // const { roomId } = useContext(RoomContext);

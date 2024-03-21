@@ -5,7 +5,7 @@ import {
   addMessageAction,
   toggleChatAction,
 } from "../reducers/chatActions";
-import { ws } from "../ws";
+import ws  from "../ws";
 
 export const ChatContext = createContext({
   chat: {

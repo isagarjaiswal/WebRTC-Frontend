@@ -14,7 +14,7 @@ import {
   useFirebase,
 } from "../../context/index";
 
-import { ws } from "../../ws";
+import  ws  from "../../ws";
 import "./Room.css";
 
 export const Room = () => {

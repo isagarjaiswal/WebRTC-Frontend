@@ -7,7 +7,7 @@
 // } from "react";
 // import { useNavigate } from "react-router-dom";
 // import Peer from "peerjs";
-// import { ws } from "../ws";
+// import  ws  from "../ws";
 // import { peersReducer } from "../reducers/peerReducer";
 // import {
 //   addPeerStreamAction,
@@ -27,7 +27,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import Peer from "peerjs";
-import { ws } from "../ws";
+import  ws  from "../ws";
 import { peersReducer } from "../reducers/peerReducer";
 import {
   addPeerStreamAction,
