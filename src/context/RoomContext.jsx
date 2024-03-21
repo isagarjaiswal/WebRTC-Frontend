@@ -134,7 +134,7 @@ export const RoomProvider = ({ children }) => {
   useEffect(() => {
     if (!me) return;
     if (!stream) return;
-    ws.on("user-joined", ({ peerId, userName}) => {
+    ws.on("user-joined", ({ peerId, userName:name}) => {
       const call = me.call(peerId, stream, {
         metadata: {
           userName,
