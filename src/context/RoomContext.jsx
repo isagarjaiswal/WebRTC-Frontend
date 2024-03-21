@@ -107,11 +107,11 @@ export const RoomProvider = ({ children }) => {
   }, [userName, userId, roomId]);
 
   useEffect(() => {
-      const peer = new Peer(userId, {
-          host: "peerjs.webrtctest.online",
-          path: "/",
-      });
-      // const peer = new Peer(userId);
+      // const peer = new Peer(userId, {
+      //     host: "peerjs.webrtctest.online",
+      //     path: "/",
+      // });
+      const peer = new Peer(userId);
 
       setMe(peer);
 
@@ -159,7 +159,7 @@ export const RoomProvider = ({ children }) => {
       ws.on("user-joined", ({ peerId, userName: name }) => {
           const call = me.call(peerId, stream, {
               metadata: {
-                  userName,
+                  userName
               },
           });
           call.on("stream", (peerStream) => {
