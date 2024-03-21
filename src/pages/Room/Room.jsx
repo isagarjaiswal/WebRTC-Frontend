@@ -6,12 +6,14 @@ import {
   UserMediaControlManager,
   NameInput,
 } from "../../components/index";
+
 import {
   RoomContext,
   UserContext,
   ChatContext,
   useFirebase,
 } from "../../context/index";
+
 import { ws } from "../../ws";
 import "./Room.css";
 
@@ -42,7 +44,7 @@ export const Room = () => {
     screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream;
 
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
-
+  console.log({ peers });
   useEffect(() => {
     isLoggedIn || navigate("/");
   }, [navigate, isLoggedIn]);
@@ -103,7 +105,7 @@ export const Room = () => {
                   .map((peer) => (
                     <div key={peer.peerId}>
                       <VideoPlayer stream={peer.stream} />
-                      <div>{peer.userName}</div>
+                      {/* <div>{peer.userName}</div> */}
                     </div>
                   ))}
               </div>

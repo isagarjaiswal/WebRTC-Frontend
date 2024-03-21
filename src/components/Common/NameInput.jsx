@@ -4,7 +4,6 @@ import "./NameInput.css";
 
 export const NameInput = ({ className }) => {
   const { userName, setUserName } = useContext(UserContext);
-
   return (
     <input
       className={`input-name ${className}`}

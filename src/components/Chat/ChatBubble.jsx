@@ -5,7 +5,7 @@ import "./Chat.css";
 export const ChatBubble = ({ message }) => {
   const { peers } = useContext(RoomContext);
   const { userId } = useContext(UserContext);
-  const author = message.author && peers[message.author].userName;
+  const author = message?.author && peers[message?.author]?.userName;
   const userName = author || "Anonimus";
   const isSelf = message.author === userId;
   const time = new Date(message.timestamp).toLocaleTimeString();

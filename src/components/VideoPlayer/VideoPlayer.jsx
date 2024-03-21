@@ -9,13 +9,20 @@ export const VideoPlayer = ({ stream, className }) => {
 
   return (
     <>
-      {stream ? (
+      <video
+        ref={videoRef}
+        autoPlay
+        muted={true}
+        className={`video-player ${className}`}
+      />
+
+      {/* {stream ? (
         <video ref={videoRef} autoPlay muted={true} className={`video-player ${className}`} />
       ) : (
         <div className={`video-player video-error-message ${className}`}>
           Permission denied for video call.
         </div>
-      )}
+      )} */}
     </>
   );
 };

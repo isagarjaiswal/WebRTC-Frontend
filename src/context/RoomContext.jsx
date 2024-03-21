@@ -26,10 +26,6 @@ export const RoomContext = createContext({
   roomId: "",
 });
 
-if (!!window.Cypress) {
-  window.Peer = Peer;
-}
-
 export const RoomProvider = ({ children }) => {
   const navigate = useNavigate();
   const { userName, userId } = useContext(UserContext);
@@ -43,15 +39,19 @@ export const RoomProvider = ({ children }) => {
   const enterRoom = ({ roomId }) => {
     navigate(`/room/${roomId}`);
   };
+
   const getUsers = ({ participants }) => {
+    console.log({ participants });
     dispatch(addAllPeersAction(participants));
   };
 
   const removePeer = (peerId) => {
+    console.log({ peerId });
     dispatch(removePeerStreamAction(peerId));
   };
 
   const switchStream = (stream) => {
+    console.log({ stream });
     setScreenSharingId(me?.id || "");
     Object.values(me?.connections).forEach((connection) => {
       const videoTrack = stream
@@ -88,8 +88,8 @@ export const RoomProvider = ({ children }) => {
 
   useEffect(() => {
     // const peer = new Peer(userId, {
-    //     host: "peerjs.webrtctest.online",
-    //     path: "/",
+    //   host: "",
+    //   path: "/",
     // });
     const peer = new Peer(userId);
     setMe(peer);
