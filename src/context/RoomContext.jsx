@@ -79,7 +79,7 @@ export const RoomProvider = ({ children }) => {
         .catch((err) => console.error(err));
     });
   };
-
+  console.log({ ws });
   const shareScreen = () => {
     if (screenSharingId) {
       navigator.mediaDevices
@@ -102,11 +102,12 @@ export const RoomProvider = ({ children }) => {
   }, [userName, userId, roomId]);
 
   useEffect(() => {
-    // const peer = new Peer(userId, {
-    //     host: "peerjs.webrtctest.online",
-    //     path: "/",
-    // });
-    const peer = new Peer(userId);
+    const peer = new Peer(userId, {
+      hostname: "webrtc-backend-1.onrender.com",
+      path: "/socket.io",
+      port: "443",
+    });
+    // const peer = new Peer(userId);
 
     setMe(peer);
 

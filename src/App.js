@@ -7,6 +7,7 @@ const App = () => {
   return (
     <Routes>
       {/* <Route path="/" element={<LoginPage />} /> */}
+      <Route path="*" component={<h1>NotFoundComponent</h1>} />
       <Route path="/" element={<HomePage />} />
       <Route path="/room/:id" element={<Room />} />
     </Routes>
