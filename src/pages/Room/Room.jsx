@@ -44,7 +44,7 @@ export const Room = () => {
     screenSharingId === userId ? screenStream : peers[screenSharingId]?.stream;
 
   const { [screenSharingId]: sharing, ...peersToShow } = peers;
-  console.log({ peers });
+  console.log({ stream, peers, peersToShow });
   useEffect(() => {
     isLoggedIn || navigate("/");
   }, [navigate, isLoggedIn]);
@@ -63,7 +63,7 @@ export const Room = () => {
             </div>
           </div>
           {/* only for user controll btn  */}
-          <UserMediaControlManager stream={stream} />
+          <UserMediaControlManager stream={""} />
         </div>
 
         <div className="right-room-container">
