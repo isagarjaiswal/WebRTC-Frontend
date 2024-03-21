@@ -105,7 +105,7 @@ export const Room = () => {
                   .map((peer) => (
                     <div key={peer.peerId}>
                       <VideoPlayer stream={peer.stream} />
-                      {/* <div>{peer.userName}</div> */}
+                      <div>{peer.userName}</div>
                     </div>
                   ))}
               </div>
